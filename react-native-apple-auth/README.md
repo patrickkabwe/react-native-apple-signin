@@ -65,47 +65,47 @@ import {
   AppleAuthCredential,
   AppleAuthScopes,
   RNAppleAuth,
-} from "@kazion/react-native-apple-auth";
-import { useState } from "react";
-import { Button, SafeAreaView, Text, View } from "react-native";
+} from '@kazion/react-native-apple-auth'
+import { useState } from 'react'
+import { Button, SafeAreaView, Text, View } from 'react-native'
 
 const App = () => {
-  const [loading, setLoading] = useState(false);
-  const [creds, setCreds] = useState<AppleAuthCredential | null>(null);
+  const [loading, setLoading] = useState(false)
+  const [creds, setCreds] = useState<AppleAuthCredential | null>(null)
 
   const handleAppleSignIn = async () => {
-    setLoading(true);
+    setLoading(true)
     try {
       const appleAuthCredential = await RNAppleAuth.signIn({
         scopes: [AppleAuthScopes.EMAIL, AppleAuthScopes.FULL_NAME],
-      });
-      setCreds(appleAuthCredential);
+      })
+      setCreds(appleAuthCredential)
     } catch (error) {
-      console.error("Apple Sign In failed:", error);
+      console.error('Apple Sign In failed:', error)
     } finally {
-      setLoading(false);
+      setLoading(false)
     }
-  };
+  }
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <View style={{ padding: 16 }}>
         <Text style={{ fontSize: 24, marginBottom: 20 }}>Apple Auth Demo</Text>
 
-        <Text>Email: {creds?.email ?? "Not available"}</Text>
-        <Text>Full Name: {creds?.fullName ?? "Not available"}</Text>
+        <Text>Email: {creds?.email ?? 'Not available'}</Text>
+        <Text>Full Name: {creds?.fullName ?? 'Not available'}</Text>
 
         <Button
-          title={loading ? "Loading..." : "Sign in with Apple"}
+          title={loading ? 'Loading...' : 'Sign in with Apple'}
           onPress={handleAppleSignIn}
           disabled={loading}
         />
       </View>
     </SafeAreaView>
-  );
-};
+  )
+}
 
-export default App;
+export default App
 ```
 
 ## API Reference
@@ -126,8 +126,8 @@ Returns a Promise that resolves to `AppleAuthCredential`:
 
 ```typescript
 interface AppleAuthCredential {
-  email?: string;
-  fullName?: string;
+  email?: string
+  fullName?: string
   // Additional fields to be documented
 }
 ```
